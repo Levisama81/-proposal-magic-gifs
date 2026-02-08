@@ -39,24 +39,10 @@ const VictoryScreen = () => {
         ✨💖✨
       </div>
 
-      {/* Glue Song Spotify embed */}
-      <div className="w-full max-w-md animate-fade-in" style={{ animationDelay: "1s" }}>
-        <iframe
-          style={{ borderRadius: "12px" }}
-          src="https://open.spotify.com/embed/track/5vjLSffimiIP26QG5WcN2K?utm_source=generator&theme=0"
-          width="100%"
-          height="152"
-          frameBorder="0"
-          allowFullScreen
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy"
-        />
-      </div>
-
       {/* Closing love note */}
       <div
         className="bg-valentine-rose/10 backdrop-blur-sm border border-valentine-rose/20 rounded-2xl p-6 md:p-8 max-w-md animate-fade-in"
-        style={{ animationDelay: "1.4s" }}
+        style={{ animationDelay: "1s" }}
       >
         <p className="font-body text-base md:text-lg text-valentine-rose leading-relaxed">
           Dear Nana, every moment with you feels like magic.
