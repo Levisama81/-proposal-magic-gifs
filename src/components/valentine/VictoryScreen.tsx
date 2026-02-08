@@ -39,10 +39,33 @@ const VictoryScreen = () => {
         ✨💖✨
       </div>
 
-      {/* Closing love note */}
+      {/* Glue Song lyrics */}
       <div
         className="bg-valentine-rose/10 backdrop-blur-sm border border-valentine-rose/20 rounded-2xl p-6 md:p-8 max-w-md animate-fade-in"
         style={{ animationDelay: "1s" }}
+      >
+        <p className="font-body text-sm text-valentine-pink/60 mb-3 italic">
+          🎵 Beabadoobee — Glue Song
+        </p>
+        <p className="font-body text-base md:text-lg text-valentine-rose leading-relaxed italic">
+          "I've never known someone like you
+          <br />
+          Tangled in love, stuck by you
+          <br />
+          From the glue
+          <br />
+          Don't forget to kiss me
+          <br />
+          Or else you'll have to miss me
+          <br />
+          I guess I'm stuck forever by the glue"
+        </p>
+      </div>
+
+      {/* Closing love note */}
+      <div
+        className="bg-valentine-rose/10 backdrop-blur-sm border border-valentine-rose/20 rounded-2xl p-6 md:p-8 max-w-md animate-fade-in"
+        style={{ animationDelay: "1.4s" }}
       >
         <p className="font-body text-base md:text-lg text-valentine-rose leading-relaxed">
           Dear Nana, every moment with you feels like magic.
