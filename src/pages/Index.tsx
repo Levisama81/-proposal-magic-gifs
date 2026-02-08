@@ -6,10 +6,12 @@ import FloatingHearts from "@/components/valentine/FloatingHearts";
 import RunawayButton from "@/components/valentine/RunawayButton";
 import CelebrationScreen from "@/components/valentine/CelebrationScreen";
 import VictoryScreen from "@/components/valentine/VictoryScreen";
+import BackgroundMusic from "@/components/valentine/BackgroundMusic";
 
 type Phase = "opening" | "reveal" | "question" | "celebration" | "victory";
 
 const Index = () => {
+  // Background music plays site-wide
   const [phase, setPhase] = useState<Phase>("opening");
   const [showSubtext, setShowSubtext] = useState(false);
   const [showRevealText, setShowRevealText] = useState(false);
@@ -52,6 +54,7 @@ const Index = () => {
   if (phase === "victory") {
     return (
       <div className="min-h-screen bg-gradient-to-br from-valentine-blush via-valentine-pink/20 to-valentine-rose/10 overflow-hidden">
+        <BackgroundMusic />
         <FloatingHearts />
         <VictoryScreen />
       </div>
@@ -61,6 +64,7 @@ const Index = () => {
   if (phase === "celebration") {
     return (
       <div className="min-h-screen bg-gradient-to-br from-valentine-blush via-valentine-pink/20 to-valentine-rose/10 overflow-hidden">
+        <BackgroundMusic />
         <FloatingHearts />
         <CelebrationScreen onContinue={() => setPhase("victory")} />
       </div>
@@ -76,6 +80,9 @@ const Index = () => {
       }`}
       onClick={phase !== "question" ? handleAdvance : undefined}
     >
+      {/* Background music */}
+      <BackgroundMusic />
+
       {/* Floating hearts in later phases */}
       {phase !== "opening" && <FloatingHearts />}
 
