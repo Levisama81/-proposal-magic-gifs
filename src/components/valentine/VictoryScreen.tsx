@@ -39,27 +39,18 @@ const VictoryScreen = () => {
         ✨💖✨
       </div>
 
-      {/* Glue Song lyrics */}
-      <div
-        className="bg-valentine-rose/10 backdrop-blur-sm border border-valentine-rose/20 rounded-2xl p-6 md:p-8 max-w-md animate-fade-in"
-        style={{ animationDelay: "1s" }}
-      >
-        <p className="font-body text-sm text-valentine-pink/60 mb-3 italic">
-          🎵 Beabadoobee — Glue Song
-        </p>
-        <p className="font-body text-base md:text-lg text-valentine-rose leading-relaxed italic">
-          "I've never known someone like you
-          <br />
-          Tangled in love, stuck by you
-          <br />
-          From the glue
-          <br />
-          Don't forget to kiss me
-          <br />
-          Or else you'll have to miss me
-          <br />
-          I guess I'm stuck forever by the glue"
-        </p>
+      {/* Glue Song Spotify embed */}
+      <div className="w-full max-w-md animate-fade-in" style={{ animationDelay: "1s" }}>
+        <iframe
+          style={{ borderRadius: "12px" }}
+          src="https://open.spotify.com/embed/track/5vjLSffimiIP26QG5WcN2K?utm_source=generator&theme=0"
+          width="100%"
+          height="152"
+          frameBorder="0"
+          allowFullScreen
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+        />
       </div>
 
       {/* Closing love note */}
