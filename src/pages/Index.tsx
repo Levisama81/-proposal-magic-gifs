@@ -7,16 +7,26 @@ import RunawayButton from "@/components/valentine/RunawayButton";
 import CelebrationScreen from "@/components/valentine/CelebrationScreen";
 import VictoryScreen from "@/components/valentine/VictoryScreen";
 import BackgroundMusic from "@/components/valentine/BackgroundMusic";
+import {
+  NO_MESSAGES,
+  STORY_INTRO,
+  STORY_BODY,
+  STORY_CLOSER,
+} from "@/lib/copy";
 
-type Phase = "opening" | "reveal" | "question" | "celebration" | "victory";
+type Phase = "opening" | "reveal" | "story" | "question" | "celebration" | "victory";
 
 const Index = () => {
   // Background music plays site-wide
   const [phase, setPhase] = useState<Phase>("opening");
   const [showSubtext, setShowSubtext] = useState(false);
   const [showRevealText, setShowRevealText] = useState(false);
+  const [showStoryIntro, setShowStoryIntro] = useState(false);
+  const [showStoryBody, setShowStoryBody] = useState(false);
+  const [showStoryCloser, setShowStoryCloser] = useState(false);
   const [showQuestion, setShowQuestion] = useState(false);
   const [showButtons, setShowButtons] = useState(false);
+  const [noClickCount, setNoClickCount] = useState(0);
 
   // Opening phase: show subtext after a beat
   useEffect(() => {
@@ -34,6 +44,20 @@ const Index = () => {
     }
   }, [phase]);
 
+  // Story phase animations
+  useEffect(() => {
+    if (phase === "story") {
+      const t1 = setTimeout(() => setShowStoryIntro(true), 400);
+      const t2 = setTimeout(() => setShowStoryBody(true), 1200);
+      const t3 = setTimeout(() => setShowStoryCloser(true), 2600);
+      return () => {
+        clearTimeout(t1);
+        clearTimeout(t2);
+        clearTimeout(t3);
+      };
+    }
+  }, [phase]);
+
   // Question phase animations
   useEffect(() => {
     if (phase === "question") {
@@ -48,7 +72,8 @@ const Index = () => {
 
   const handleAdvance = () => {
     if (phase === "opening") setPhase("reveal");
-    else if (phase === "reveal") setPhase("question");
+    else if (phase === "reveal") setPhase("story");
+    else if (phase === "story") setPhase("question");
   };
 
   if (phase === "victory") {
@@ -78,7 +103,7 @@ const Index = () => {
           ? "bg-valentine-dark"
           : "bg-gradient-to-br from-valentine-blush via-valentine-pink/20 to-valentine-rose/10"
       }`}
-      onClick={phase !== "question" ? handleAdvance : undefined}
+      onClick={phase === "opening" || phase === "reveal" || phase === "story" ? handleAdvance : undefined}
     >
       {/* Background music */}
       <BackgroundMusic />
@@ -127,6 +152,36 @@ const Index = () => {
         </div>
       )}
 
+      {/* ===== PHASE 2.5: STORY ===== */}
+      {phase === "story" && (
+        <div className="flex flex-col items-center gap-6 text-center z-10 animate-fade-in max-w-lg">
+          <p
+            className={`font-body text-lg md:text-xl text-valentine-rose/90 transition-all duration-700 ${
+              showStoryIntro ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
+            {STORY_INTRO}
+          </p>
+          <p
+            className={`font-body text-xl md:text-2xl text-valentine-rose leading-relaxed transition-all duration-700 ${
+              showStoryBody ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
+            {STORY_BODY}
+          </p>
+          <p
+            className={`font-display text-2xl md:text-3xl font-black text-valentine-rose transition-all duration-700 ${
+              showStoryCloser ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
+            {STORY_CLOSER}
+          </p>
+          <span className="font-body text-sm text-valentine-rose/50 mt-6 animate-pulse">
+            tap to continue
+          </span>
+        </div>
+      )}
+
       {/* ===== PHASE 3: QUESTION ===== */}
       {phase === "question" && (
         <div className="flex flex-col items-center gap-6 text-center z-10 animate-fade-in">
@@ -145,6 +200,13 @@ const Index = () => {
             Will you be my Valentine? 🥺
           </h2>
 
+          {/* "Please" etc. when user interacts with No */}
+          {noClickCount > 0 && (
+            <p className="font-body text-lg md:text-xl text-valentine-pink mt-2 animate-fade-in">
+              {NO_MESSAGES[Math.min(noClickCount - 1, NO_MESSAGES.length - 1)]}
+            </p>
+          )}
+
           {/* Buttons */}
           <div
             className={`flex items-center gap-6 mt-6 transition-all duration-500 ${
@@ -158,7 +220,7 @@ const Index = () => {
             >
               Yes! 💕
             </Button>
-            <RunawayButton />
+            <RunawayButton onNoInteraction={() => setNoClickCount((c) => c + 1)} />
           </div>
         </div>
       )}

@@ -1,5 +1,6 @@
 import loveMochiGif from "@/assets/love-mochi.gif";
 import iLoveYouGif from "@/assets/i-love-you.gif";
+import { NICKNAME } from "@/lib/copy";
 
 const VictoryScreen = () => {
   return (
@@ -30,7 +31,7 @@ const VictoryScreen = () => {
           Victory Kiss & Dance! 💃🕺
         </p>
         <p className="font-body text-lg md:text-xl text-valentine-pink max-w-md">
-          Nana, you just made me the happiest person alive
+          {NICKNAME}, you just made me the happiest person alive
         </p>
       </div>
 
@@ -45,7 +46,7 @@ const VictoryScreen = () => {
         style={{ animationDelay: "1s" }}
       >
         <p className="font-body text-base md:text-lg text-valentine-rose leading-relaxed">
-          Dear Nana, every moment with you feels like magic.
+          Dear {NICKNAME}, every moment with you feels like magic.
           <br />
           Here's to us — to laughter, love, and all the adventures ahead.
         </p>

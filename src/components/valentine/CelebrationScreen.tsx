@@ -3,6 +3,7 @@ import confetti from "canvas-confetti";
 import { Button } from "@/components/ui/button";
 import minionGif from "@/assets/minions-love.gif";
 import chestPainGif from "@/assets/pain-chest-pain.gif";
+import { NICKNAME } from "@/lib/copy";
 
 interface CelebrationScreenProps {
   onContinue: () => void;
@@ -64,7 +65,7 @@ const CelebrationScreen = ({ onContinue }: CelebrationScreenProps) => {
       </div>
 
       <p className="font-body text-lg text-valentine-pink/80 mt-8 max-w-md">
-        Happy Valentine's Day, Nana 💕
+        Happy Valentine's Day, {NICKNAME} 💕
       </p>
 
       <Button

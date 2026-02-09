@@ -1,19 +1,24 @@
 import { useState, useCallback, useRef } from "react";
 import { Button } from "@/components/ui/button";
 
-const RunawayButton = () => {
+interface RunawayButtonProps {
+  onNoInteraction?: () => void;
+}
+
+const RunawayButton = ({ onNoInteraction }: RunawayButtonProps) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [scale, setScale] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const dodge = useCallback(() => {
+    onNoInteraction?.();
     const maxX = window.innerWidth * 0.6;
     const maxY = window.innerHeight * 0.5;
     const newX = (Math.random() - 0.5) * maxX;
     const newY = (Math.random() - 0.5) * maxY;
     setPosition({ x: newX, y: newY });
     setScale((prev) => Math.max(prev * 0.9, 0.5));
-  }, []);
+  }, [onNoInteraction]);
 
   return (
     <div ref={containerRef} className="relative" style={{ zIndex: 10 }}>
